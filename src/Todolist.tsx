@@ -16,6 +16,7 @@ type TodolistPropsType = {
     addTask: (todoListId: string, title: string) => void
     changeTaskStatus: (todoListId: string, taskId: string, isDone: boolean) => void
     filter: FilterValuesType
+    removeTodoList: (todoListId: string) => void
 }
 
 export function Todolist(props: TodolistPropsType) {
@@ -47,9 +48,11 @@ export function Todolist(props: TodolistPropsType) {
     const onActiveClickHandler = () => props.changeFilter(props.todoListid, "active");
     const onCompletedClickHandler = () => props.changeFilter(props.todoListid, "completed");
 
+    const removeTodoListHandler = () => props.removeTodoList(props.todoListid)
 
     return <div>
         <h3>{props.title}</h3>
+        <button className='todoList' onClick={removeTodoListHandler}> X</button>
         <div>
             <input value={title}
                    onChange={onChangeHandler}
